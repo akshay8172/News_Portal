@@ -1,0 +1,105 @@
+{% extends 'Admin/admin_home.html' %}
+{% block body %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - View Users</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .user-card img {
+            object-fit: cover;
+            width: 100%;
+            height: 200px;
+        }
+
+        .card-custom {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .card-columns {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 style="color: darkgoldenrod;font-size: x-large" class="text-center mb-4">Users List</h1>
+<div class="text-center mt-4">
+            <a href="javascript:history.back()" class="btn btn-secondary">Go Back</a>
+        </div><br><br>
+        <!-- Search Bar -->
+        <div class="mb-4">
+            <input type="text" id="searchInput" onkeyup="searchByName()" class="form-control" placeholder="Search by name...">
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="userList">
+            {% for user in users %}
+            <div class="col user-card-item">
+                <div class="card card-custom h-100">
+                    <div class="user-card">
+                        <img src="{{ user.photo.url }}" class="card-img-top" alt="User Photo">
+                    </div>
+                    <div class="card-body">
+                        <b> <b><h5 style="color: grey" class="card-title user-name">Name : {{ user.name|capfirst }}</h5></b></b>
+                        <p style="color: brown" class="card-text"><strong>Gender:</strong> {{ user.gender }}</p>
+                        <p style="color: brown" class="card-text"><strong>DOB:</strong> {{ user.dob }}</p>
+                        <p style="color: brown" class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+                        <p style="color: brown" class="card-text"><strong>Phone:</strong> {{ user.phone }}</p>
+                        <p style="color: brown" class="card-text"><strong>Place:</strong> {{ user.place }}</p>
+                        <p style="color: brown" class="card-text"><strong>Pin:</strong> {{ user.pin }}</p>
+                        <p style="color: brown" class="card-text"><strong>Post:</strong> {{ user.post }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Back button -->
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for name search -->
+    <script>
+        function searchByName() {
+            // Get the input field and its value
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toLowerCase();
+
+            // Get all user cards
+            let userCards = document.getElementsByClassName('user-card-item');
+
+            // Loop through all user cards, and hide those that don't match the search query
+            for (let i = 0; i < userCards.length; i++) {
+                let userName = userCards[i].getElementsByClassName('user-name')[0].textContent;
+
+                if (userName.toLowerCase().indexOf(filter) > -1) {
+                    userCards[i].style.display = "";
+                } else {
+                    userCards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+{% endblock %}

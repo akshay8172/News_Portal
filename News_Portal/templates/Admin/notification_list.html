@@ -1,0 +1,46 @@
+{% extends 'Admin/admin_home.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .notification-container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        .notification-item {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .notification-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container notification-container">
+        <h1 class="text-center">Notifications</h1>
+        {% if notifications %}
+            {% for notification in notifications %}
+                <div class="notification-item">
+                    <p style="color: black">{{ notification.notification }}</p>
+                    <p class="notification-date">Date: {{ notification.date }}</p>
+                    <a href="/delete_notification/{{ notification.id }}" class="btn btn-info">Delete</a>
+
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center">No notifications available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% endblock %}

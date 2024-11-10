@@ -1,0 +1,96 @@
+{% extends 'Admin/admin_home.html' %}
+{% block body %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ news.title }}</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Custom card styling */
+        .news-card {
+            border: none;
+            border-radius: 10px; /* Reduced border radius */
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.85); /* Light gray with reduced opacity */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Reduced shadow for a smaller look */
+            transition: transform 0.3s ease;
+            max-width: 600px; /* Set a max width for the card */
+            margin: auto; /* Center the card */
+        }
+
+        .news-card:hover {
+            transform: translateY(-3px); /* Slightly reduced hover effect */
+        }
+
+        /* Image styling */
+        .news-card img {
+            border-top-left-radius: 10px; /* Reduced border radius */
+            border-top-right-radius: 10px; /* Reduced border radius */
+            max-height: 250px; /* Adjusted max height to reduce image size */
+            object-fit: cover;
+            width: 100%; /* Ensure the image takes full width */
+        }
+
+        /* Card body spacing */
+        .news-card .card-body {
+            padding: 1rem; /* Reduced padding */
+        }
+
+        /* Text color styling */
+        .card-body {
+            color: black; /* Set text color to black */
+        }
+
+        /* Back button styling */
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        /* Primary buttons */
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        /* View comments button */
+        .btn-info {
+            margin-top: 10px; /* Reduced margin */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <!-- Back button -->
+        <div class="d-flex justify-content-start mb-3">
+            <a href="javascript:history.back()" class="btn back-btn">Go Back</a>
+        </div>
+
+        <!-- News Card -->
+        <div class="news-card card mb-4">
+            <img src="{{ news.image_url }}" class="card-img-top" alt="News Image">
+            <div class="card-body">
+                <h2 class="card-title text-center">{{ news.title }}</h2>
+                <hr>
+                <p class="card-text mt-2"><strong>Summary:</strong> {{ news.summary }}</p>
+                <p class="card-text"><strong>Content:</strong> {{ news.content }}</p>
+                <b><p class="card-text"><small class="text-muted">Published on: {{ news.published_at|date:"F j, Y" }}</small></p></b>
+                <div class="text-center mt-2">
+                    <a href="{{ news.source_url }}" class="btn btn-primary" target="_blank">Read Original Source</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="/admin_view_comments/{{ news.id }}" class="btn btn-info">View Comments</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'Admin/admin_home.html' %}
+{% block body %}
+
+<h2>New Comments Today</h2>
+<style>
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+</style>
+{% if comments %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>News Article</th>
+            <th>Comment</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for comment in comments %}
+        <tr>
+            <td>{{ comment.id }}</td>
+            <td>{{ comment.USER.username }}</td>
+            <td>{{ comment.NEWS.title }}</td>
+            <td>{{ comment.comment_text|truncatewords:20 }}</td>
+            <td>{{ comment.created_at|date:"Y-m-d H:i" }}</td>
+            <td>
+                <!-- Actions like approve/delete can be added here -->
+                <a href="/delete_comment/{{ comment }} %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No new comments today.</p>
+{% endif %}
+
+{% endblock %}

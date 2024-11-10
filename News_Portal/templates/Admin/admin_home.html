@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Background image styling */
+        body {
+            background: url('/static/news_paper.png') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            position: relative;
+            color: white; /* Makes body text white */
+        }
+
+        /* Add a dark mask over the background image */
+        .background-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* dark mask */
+            z-index: 0;
+        }
+
+        /* Main content area */
+        .main-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            color: white; /* Ensures main content is white */
+        }
+
+        /* Navbar styling */
+        .navbar {
+            z-index: 1;
+        }
+
+        /* Override link colors in the navbar */
+        .navbar-nav .nav-link {
+            color: white !important; /* Force navbar links to be white */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ddd !important; /* Lighter hover effect for navbar links */
+        }
+    </style>
+
+    {% block extra_css %}
+    <!-- Custom CSS for each page -->
+    {% endblock %}
+</head>
+<body>
+
+    <!-- Background Mask -->
+    <div class="background-mask"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a style="color: cyan" class="navbar-brand" href="/AdminHome">Dashboard</a>
+            <a style="color: brown" class="navbar-brand" href="/admin_view_new_comments">Comments</a>
+            <a style="color: cyan" class="navbar-brand" href="/add_notificaation">Add Notification</a>
+            <a style="color: cyan" class="navbar-brand" href="/notifications">View Notification</a>
+            <a style="color: cyan" class="navbar-brand" href="/admin_view_news">View News</a>
+            <a style="color: antiquewhite" class="navbar-brand" href="/admin_view_users">View Users</a>
+            <a style="color: red" class="navbar-brand" href="/">Logout</a>
+        </div>
+    </nav>
+<br><br>
+    <!-- Main Content Area -->
+<div class="main-content container">
+    {% block body %}
+        <style>
+            /* Flexbox to center the button */
+            .main-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                position: relative;
+            }
+
+            /* Animation keyframes for bounce and scaling */
+            @keyframes bounce {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-15px);
+                }
+            }
+
+            /* Style for the get started button */
+            .get-started-btn {
+                display: inline-block;
+                padding: 15px 40px;
+                background-color: #ff6600;
+                color: white;
+                text-decoration: none;
+                font-size: 1.5rem;
+                font-weight: bold;
+                border-radius: 10px;
+                text-align: center;
+                animation: bounce 2s infinite;
+                transition: transform 0.3s ease, background-color 0.3s ease;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Hover effect: scale the button and change background */
+            .get-started-btn:hover {
+                transform: scale(1.1); /* Increase button size */
+                background-color: #e65c00;
+                color: #fff;
+                text-decoration: none;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            }
+        </style>
+
+        <!-- Centering the button -->
+        <div class="text-center">
+            <a href="/admin_view_news" class="get-started-btn">Get Started</a>
+        </div>
+
+    {% endblock %}
+</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    {% block extra_js %}
+    <!-- Custom JS for each page -->
+    {% endblock %}
+</body>
+</html>

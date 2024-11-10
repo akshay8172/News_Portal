@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/news_paper.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .banner {
+            padding: 150px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .banner h1 {
+            font-size: 4rem;
+            font-weight: 700;
+        }
+        .banner p {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        .features {
+            padding: 50px 0;
+            background: white;
+            color: black;
+        }
+        .feature-box {
+            margin-top: 30px;
+        }
+        .feature-box h4 {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .feature-box p {
+            font-size: 1rem;
+            color: #666;
+        }
+        .btn-custom {
+            background-color: #28a745;
+            color: white;
+        }
+        footer {
+            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            color: white;
+        }
+            .features {
+        padding: 50px 0;
+    }
+
+    .feature-box {
+        position: relative;
+        width: 100%;
+        height: 350px; /* Fixed height for equal-sized boxes */
+        max-width: 300px; /* Max width for responsiveness */
+        margin: 20px auto;
+        perspective: 1000px; /* Perspective for 3D effect */
+    }
+
+    .feature-box img {
+        width: 100px; /* Ensures the images don't stretch */
+        height: auto;
+    }
+
+    .feature-box h4 {
+        margin-top: 20px;
+    }
+
+    .feature-box p {
+        font-size: 16px;
+    }
+
+    /* Styling for the card to create a 3D effect */
+    .feature-box .card {
+        background: #f1f1f1; /* Default background color */
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform-style: preserve-3d;
+        transition: transform 0.5s ease, background-color 0.5s ease;
+    }
+
+    /* Unique background colors for each card */
+    .feature-box:nth-child(1) .card {
+        background-color: #ffdddd; /* Light red */
+    }
+
+    .feature-box:nth-child(2) .card {
+        background-color: #ddffdd; /* Light green */
+    }
+
+    .feature-box:nth-child(3) .card {
+        background-color: #ddddff; /* Light blue */
+    }
+
+    /* Hover effects with different 3D transformations */
+    .feature-box:nth-child(1):hover .card {
+        transform: rotateY(15deg) translateY(-10px) rotateX(5deg) scale(1.05); /* Tilt right */
+    }
+
+    .feature-box:nth-child(2):hover .card {
+        transform: rotateY(-15deg) translateY(-10px) rotateX(-5deg) scale(1.05); /* Tilt left */
+    }
+
+    .feature-box:nth-child(3):hover .card {
+        transform: rotateX(15deg) translateY(-10px) rotateY(5deg) scale(1.05); /* Tilt upwards */
+    }
+
+    /* Ensuring equal-sized columns */
+    .row {
+        display: flex;
+        justify-content: center;
+    }
+
+    .col-md-4 {
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a style="font-family: Txt" class="navbar-brand" href="#">News Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/registration">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner Section -->
+<section class="banner" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/news_paper.png') no-repeat center center; background-size: cover; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <div class="container" style="color: white;">
+        <h1>Welcome to News Portal</h1>
+        <p>Get the live updates of the news</p>
+        <a href="{% url 'login' %}" class="btn btn-custom btn-lg mt-4" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px;">Get Started</a>
+    </div>
+</section>
+
+    <!-- Features Section -->
+    <section class="features">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 feature-box">
+                <div class="card">
+                    <img src="/static/news2.png" class="img-fluid" alt="Feature 1">
+                    <h4>Feature 1</h4>
+                    <p style="font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif">24 * 7 News available</p>
+                </div>
+            </div>
+            <div class="col-md-4 feature-box">
+                <div class="card">
+                    <img src="/static/news1.png" class="img-fluid" alt="Feature 2">
+                    <h4>Feature 2</h4>
+                    <p style="font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif">Never miss the live update</p>
+                </div>
+            </div>
+            <div class="col-md-4 feature-box">
+                <div class="card">
+                    <img src="/static/news3.png" class="img-fluid" alt="Feature 3">
+                    <h4>Feature 3</h4>
+                    <p style="font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif">Get notified about the updated news.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

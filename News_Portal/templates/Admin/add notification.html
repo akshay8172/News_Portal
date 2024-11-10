@@ -1,0 +1,78 @@
+{##}
+{#{% extends 'Admin/admin_home.html' %}#}
+{#{% block body %}#}
+{#<!-- add_notification.html -->#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Add Notification</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Add New Notification</h1>#}
+{#    <form method="post" action="">#}
+{#        {% csrf_token %}#}
+{#        <label for="notification">Notification:</label>#}
+{#        <input type="text" id="notification" name="NOTIFICATION" maxlength="500" required>#}
+{#        <button type="submit" name="submit">Add Notification</button>#}
+{#    </form>#}
+{#</body>#}
+{#</html>#}
+{##}
+{#{% endblock %}#}
+
+
+
+{% extends 'Admin/admin_home.html' %}
+{% block body %}
+<!-- add_notification.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Notification</title>
+    <!-- Link to Bootstrap CSS if it's not already in your admin_home.html -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .notification-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .notification-form h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        .notification-form label {
+            font-weight: bold;
+        }
+        .notification-form button {
+            width: 100%;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="notification-form">
+            <h1>Add New Notification</h1>
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="notification" style="color: black">Notification:</label>
+                    <input type="text" id="notification" name="NOTIFICATION" maxlength="500" required class="form-control">
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary">Add Notification</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}
